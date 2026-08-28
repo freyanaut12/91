@@ -94,6 +94,53 @@
     revealEls.forEach(el => el.classList.add('is-visible'));
   }
 
+  /* ---------- work card videos ---------- */
+  // Each .work-card__video points to a file under /videos/. Until you upload
+  // the real files, the <video> just fails to load quietly and the card
+  // falls back to its plain placeholder look — nothing breaks.
+  const workVideos = document.querySelectorAll('.work-card__video');
+
+  workVideos.forEach((video) => {
+    const frame = video.closest('.work-card__frame');
+    if (!frame) return;
+
+    const isReady = () => video.classList.contains('is-ready');
+
+    video.addEventListener('loadeddata', () => {
+      video.classList.add('is-ready');
+    });
+    video.addEventListener('error', () => {
+      video.classList.remove('is-ready');
+    });
+    video.addEventListener('ended', () => {
+      frame.classList.remove('is-playing');
+    });
+
+    const play = () => {
+      if (!isReady() || prefersReducedMotion) return;
+      video.play()
+        .then(() => frame.classList.add('is-playing'))
+        .catch(() => {}); // e.g. browser blocked autoplay — fine, user can tap again
+    };
+    const pause = () => {
+      video.pause();
+      video.currentTime = 0;
+      frame.classList.remove('is-playing');
+    };
+
+    // Desktop: hovering the frame previews the video automatically.
+    frame.addEventListener('mouseenter', play);
+    frame.addEventListener('mouseleave', pause);
+
+    // Click / tap anywhere on the frame (including the ▶ icon) toggles
+    // playback explicitly — this is what makes the play button itself work,
+    // on both desktop clicks and mobile taps.
+    frame.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (video.paused) play(); else pause();
+    });
+  });
+
   /* ---------- process scrubber fill on scroll ---------- */
   const scrubberFill = document.getElementById('scrubberFill');
   const scrubber = document.querySelector('.scrubber');

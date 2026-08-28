@@ -1,5 +1,5 @@
 /* =========================================================
-   BINGKAI STUDIO — design tokens
+   A88 PRODUCTION — design tokens
    ink     #0E1210  base background (editing-suite dark)
    ink-2   #161C19  raised surface
    paper   #EFEEE9  primary text / light surface
@@ -429,6 +429,7 @@ section{ padding: 110px var(--pad); }
   overflow: hidden;
   display: flex; align-items: center; justify-content: center;
   transition: border-color .3s var(--ease);
+  cursor: pointer;
 }
 .ratio-16-9{ aspect-ratio: 16/9; }
 .ratio-1-1{ aspect-ratio: 1/1; }
@@ -438,6 +439,24 @@ section{ padding: 110px var(--pad); }
   position: absolute; inset: 0;
   background:
     repeating-linear-gradient(45deg, rgba(239,238,233,.035) 0 2px, transparent 2px 14px);
+  pointer-events: none;
+}
+.work-card__video{
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity .35s var(--ease);
+  pointer-events: none;
+}
+.work-card__video.is-ready{ opacity: 1; }
+.work-card__frame.is-playing .work-card__play{
+  opacity: 0;
+  transform: scale(.9);
+}
+.work-card__play{
+  pointer-events: none; /* clicks fall through to .work-card__frame */
+  transition: transform .3s var(--ease), background .3s var(--ease), color .3s var(--ease), opacity .3s var(--ease);
 }
 .work-card__play{
   width: 52px; height: 52px;

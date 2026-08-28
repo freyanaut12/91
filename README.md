@@ -1,53 +1,22 @@
-# BINGKAI Studio — Landing Page
+# Video folder
 
-A static landing page (plain HTML/CSS/JS, no build step) for a creative
-agency offering social media management, branding & motion graphics, and
-video production.
+Drop your MP4 files here with these exact filenames so they match what
+`index.html` already references — no code editing needed:
 
-## Folder contents
-```
-index.html    → page structure & content
-styles.css    → all styling & design
-script.js     → interactions (timecode, accordion, scroll animations)
-```
+| Filename                        | Used in work card                  |
+|----------------------------------|-------------------------------------|
+| coffee-brand-launch.mp4          | Launch Campaign — Local Coffee Brand |
+| fitness-studio-rebrand.mp4       | Rebrand — Fitness Studio             |
+| fashion-label-series.mp4         | Daily Content Series — Fashion Label |
+| tech-startup-profile.mp4         | Company Profile Video — Tech Startup |
+| finance-app-explainer.mp4        | Motion Explainer — Finance App       |
 
-## How to deploy to Vercel
-
-### Option 1 — Vercel CLI (fastest)
-1. Install the Vercel CLI (one time): `npm i -g vercel`
-2. Go into this folder in your terminal: `cd bingkai-landing`
-3. Run: `vercel`
-4. Follow the prompts (log in / sign up if needed), choose a new project.
-5. To deploy to production: `vercel --prod`
-
-### Option 2 — GitHub + Vercel dashboard (no CLI)
-1. Create a new GitHub repository and upload the three files above
-   (`index.html`, `styles.css`, `script.js`) to the repo root.
-2. Go to [vercel.com](https://vercel.com) → **Add New Project**.
-3. Select that repository. Vercel automatically detects it as a static
-   site — no build command or output directory settings needed.
-4. Click **Deploy**. Done in about 30 seconds.
-
-### Option 3 — drag & drop
-1. Go to [vercel.com/new](https://vercel.com/new).
-2. Drag the `bingkai-landing` folder straight onto the page.
-
-## What to replace before publishing
-- **Agency name**: currently uses the placeholder name "BINGKAI" — replace
-  it across all files (search for "BINGKAI" / "Bingkai") if you want a
-  different name.
-- **Contact info**: the email (`hello@bingkaistudio.com`) and WhatsApp
-  number in the CTA and footer sections (`index.html`, search for `mailto:`
-  and `wa.me`).
-- **Work/Portfolio**: the "Work" section currently uses generic sample
-  projects — replace the titles, descriptions, and ideally real
-  thumbnails/videos.
-- **Testimonial**: replace the placeholder quote in the testimonial section
-  with a real client testimonial.
-- **Social links**: fill in the `href="#"` placeholders in the footer with
-  your actual Instagram, TikTok, and LinkedIn links.
-
-## Custom domain on Vercel
-After deploying, open the project in the Vercel dashboard → **Settings →
-Domains** → add your domain (e.g. `bingkaistudio.com`) and point your DNS
-according to the instructions shown there.
+## Notes
+- Format: MP4 (H.264 video / AAC audio) — the most broadly supported combo.
+- Keep each file reasonably small (compress to a low/medium bitrate). Large
+  files slow the page down, especially on mobile.
+- Videos are muted and silent by design — they're short looping previews,
+  not videos with sound. If a card doesn't need a preview clip, just leave
+  that file out; the card will keep showing its plain placeholder.
+- Want a different filename? Update the matching `src="videos/...mp4"` in
+  `index.html`, or rename your file to match the table above — either works.
